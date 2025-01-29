@@ -19,32 +19,25 @@ git clone https://github.com/yourusername/cardiovascular-disease-prediction.git
 cd cardiovascular-disease-prediction
 ```
 
-#### **2️⃣ Set Up a Virtual Environment (Recommended)**
+#### **2️⃣ Set Up a Virtual Environment**
 ```bash
 python -m venv venv
-source venv/bin/activate  # For macOS/Linux
-venv\Scripts\activate      # For Windows
-```
-
-#### **3️⃣ Install Dependencies**
-```bash
-pip install -r requirements.txt
+venv\Scripts\activate      
 ```
 
 #### **4️⃣ Run the Web Application**
-If this project includes a Flask API or frontend, add the command to start it:
 ```bash
-python app.py  # Modify as per your entry file
+python app.py 
 ```
 
 ### **📊 Dataset**
 - The dataset used for training the model consists of patient records with various health metrics.
 - The data includes **age, gender, cholesterol levels, glucose levels, blood pressure, BMI, and more.**
-- **[Link to Dataset (if applicable)]** or mention **data preprocessing techniques**.
+- **https://www.kaggle.com/datasets/colewelkins/cardiovascular-disease**
 
 ### **📚 Technologies Used**
 - **Frontend:** HTML, CSS
-- **Backend:** Python, Flask (if applicable)
+- **Backend:** Python, Flask
 - **Machine Learning:** XGBoost, Scikit-Learn, Pandas
 - **Data Processing:** Feature engineering, StandardScaler, OneHotEncoding
 
