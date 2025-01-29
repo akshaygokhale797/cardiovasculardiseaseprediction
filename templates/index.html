@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardiovascular Disease Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Lexend', sans-serif;
+            background: linear-gradient(to bottom, white, #ff4d4d);
+            color: #333;
+        }
+
+        header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header img {
+            height: 60px;
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ff4d4d;
+            margin: 0;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+        }
+
+        main p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .form-container {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .form-container label {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .form-container button:hover {
+            background-color: #e60000;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="cardio.jpeg" alt="Cardio Logo">
+        <h1>Cardiovascular Disease Assessment</h1>
+    </header>
+    <main>
+        <p>Welcome to the Cardiovascular Disease Assessment tool. Use this interface to input patient data and receive insights into cardiovascular risk levels. Note: This is NOT an official medical page and cannot provide an official diagnoses. Please consult a medical professional if you need urgent care.</p>
+        <div class="form-container">
+            <form id="prediction-form">
+                <label for="age">Age (years):</label>
+                <input type="number" id="age" name="age" required>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="1">Female</option>
+                    <option value="2">Male</option>
+                </select>
+
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" name="height" required>
+
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" required>
+
+                <label for="ap_hi">Systolic Blood Pressure (ap_hi):</label>
+                <input type="number" id="ap_hi" name="ap_hi" required>
+
+                <label for="ap_lo">Diastolic Blood Pressure (ap_lo):</label>
+                <input type="number" id="ap_lo" name="ap_lo" required>
+
+                <label for="cholesterol">Cholesterol Level:</label>
+                <select id="cholesterol" name="cholesterol" required>
+                    <option value="1">Normal</option>
+                    <option value="2">Above Normal</option>
+                    <option value="3">Well Above Normal</option>
+                </select>
+
+                <label for="glucose">Glucose Level:</label>
+                <select id="glucose" name="glucose" required>
+                    <option value="1">Normal</option>
+                    <option value="2">Above Normal</option>
+                    <option value="3">Well Above Normal</option>
+                </select>
+
+                <label for="smoke">Smoke:</label>
+                <select id="smoke" name="smoke" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="alcohol">Regular Alcohol Consumption:</label>
+                <select id="alcohol" name="alcohol" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="active">Physically Active:</label>
+                <select id="active" name="active" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <button type="button" id="submit-button">Submit</button>
+            </form>
+        </div>
+        <div id="result" class="result"></div>
+    </main>
+    <footer>
+        &copy; TEMPORARY FOOTER
+    </footer>
+
+    <script>
+        document.getElementById('submit-button').addEventListener('click', async function () {
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            const height = document.getElementById('height').value;
+            const weight = document.getElementById('weight').value;
+            const ap_hi = document.getElementById('ap_hi').value;
+            const ap_lo = document.getElementById('ap_lo').value;
+            const cholesterol = document.getElementById('cholesterol').value;
+            const glucose = document.getElementById('glucose').value;
+            const smoke = document.getElementById('smoke').value;
+            const alcohol = document.getElementById('alcohol').value;
+            const active = document.getElementById('active').value;
+
+            const data = {
+                age: parseInt(age),
+                gender: parseInt(gender),
+                height: parseInt(height),
+                weight: parseFloat(weight),
+                ap_hi: parseInt(ap_hi),
+                ap_lo: parseInt(ap_lo),
+                cholesterol: parseInt(cholesterol),
+                glucose: parseInt(glucose),
+                smoke: parseInt(smoke),
+                alcohol: parseInt(alcohol),
+                active: parseInt(active),
+            };
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+
+                if (response.ok) {
+                    const message = result.risk === 1 
+                        ? "Risk of cardiovascular disease likely" 
+                        : "Risk of cardiovascular disease NOT likely";
+                    document.getElementById('result').textContent = message;
+                } else {
+                    document.getElementById('result').textContent = `Error: ${result.error}`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').textContent = 'An unexpected error occurred. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>
